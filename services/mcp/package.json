@@ -1,0 +1,24 @@
+{
+  "name": "@beforepay/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP servers for BeforePay",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "node --loader tsx src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@beforepay/database": "workspace:*",
+    "@beforepay/types": "workspace:*",
+    "axios": "^1.6.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
