@@ -4,7 +4,7 @@
  */
 
 import { getDatabase } from "@beforepay/database";
-import { evidence, investigations } from "@beforepay/database/schema";
+import { evidence, investigations } from "@beforepay/database";
 import { eq } from "drizzle-orm";
 import type { Evidence as EvidenceType } from "@beforepay/types";
 

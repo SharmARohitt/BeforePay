@@ -9,8 +9,8 @@ import {
   vendorContacts,
   bankAccounts,
   bankAccountChanges,
-} from "@beforepay/database/schema";
-import { eq } from "drizzle-orm";
+} from "@beforepay/database";
+import { eq, and } from "drizzle-orm";
 
 export async function getVendorDetails(vendorId: string) {
   const db = await getDatabase();
@@ -124,9 +124,10 @@ export async function verifyVendorContact(
     .select()
     .from(vendorContacts)
     .where(
-      (c) =>
-        c.vendorId === vendorId &&
-        c.email === email
+      and(
+        eq(vendorContacts.vendorId, vendorId),
+        eq(vendorContacts.email, email)
+      )
     )
     .then((results) => results[0]);
 
@@ -172,10 +173,7 @@ export async function checkBankChangeAuthorization(
   const recentChange = await db
     .select()
     .from(bankAccountChanges)
-    .where(
-      (c) =>
-        c.vendorId === vendorId
-    )
+    .where(eq(bankAccountChanges.vendorId, vendorId))
     .then((results) =>
       results
         .sort(
@@ -201,9 +199,10 @@ export async function checkBankChangeAuthorization(
     .select()
     .from(vendorContacts)
     .where(
-      (c) =>
-        c.vendorId === vendorId &&
-        c.email === recentChange.requestedBy
+      and(
+        eq(vendorContacts.vendorId, vendorId),
+        eq(vendorContacts.email, recentChange.requestedBy!)
+      )
     )
     .then((results) => results[0]);
 

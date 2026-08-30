@@ -4,8 +4,8 @@
  */
 
 import { getDatabase } from "@beforepay/database";
-import { contracts, contractAmendments, purchaseOrders } from "@beforepay/database/schema";
-import { eq } from "drizzle-orm";
+import { contracts, contractAmendments, purchaseOrders } from "@beforepay/database";
+import { eq, and } from "drizzle-orm";
 
 export async function getActiveContract(vendorId: string) {
   const db = await getDatabase();
@@ -14,9 +14,10 @@ export async function getActiveContract(vendorId: string) {
     .select()
     .from(contracts)
     .where(
-      (c) =>
-        c.vendorId === vendorId &&
-        c.status === "active"
+      and(
+        eq(contracts.vendorId, vendorId),
+        eq(contracts.status, "active")
+      )
     )
     .then((results) => results[0]);
 
@@ -28,9 +29,10 @@ export async function getActiveContract(vendorId: string) {
     .select()
     .from(contractAmendments)
     .where(
-      (a) =>
-        a.contractId === contract.id &&
-        a.status === "approved"
+      and(
+        eq(contractAmendments.contractId, contract.id),
+        eq(contractAmendments.status, "approved")
+      )
     );
 
   return {
@@ -85,9 +87,10 @@ export async function analyzeContractCompliance(
     .select()
     .from(contracts)
     .where(
-      (c) =>
-        c.vendorId === vendorId &&
-        c.status === "active"
+      and(
+        eq(contracts.vendorId, vendorId),
+        eq(contracts.status, "active")
+      )
     )
     .then((results) => results[0]);
 
@@ -175,9 +178,10 @@ export async function checkPOCoverage(
     .select()
     .from(purchaseOrders)
     .where(
-      (po) =>
-        po.vendorId === vendorId &&
-        po.status === "issued"
+      and(
+        eq(purchaseOrders.vendorId, vendorId),
+        eq(purchaseOrders.status, "issued")
+      )
     );
 
   if (pos.length === 0) {

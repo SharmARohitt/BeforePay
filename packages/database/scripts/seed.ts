@@ -37,7 +37,6 @@ async function seed() {
     const company = await db
       .insert(companies)
       .values({
-        id: "c_nova_001",
         name: "NovaStack",
       })
       .returning();
@@ -48,7 +47,6 @@ async function seed() {
     const vendor = await db
       .insert(vendors)
       .values({
-        id: "v_acme_001",
         companyId: company[0].id,
         name: "Acme Cloud Services",
         legalName: "Acme Cloud Services Pvt Ltd",
