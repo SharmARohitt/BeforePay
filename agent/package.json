@@ -1,0 +1,39 @@
+{
+  "name": "@beforepay/agent",
+  "version": "0.1.0",
+  "description": "TrueForge agent orchestration and evidence engine for BeforePay",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./controller": {
+      "import": "./dist/controller.js",
+      "types": "./dist/controller.d.ts"
+    },
+    "./evidence-engine": {
+      "import": "./dist/evidence-engine.js",
+      "types": "./dist/evidence-engine.d.ts"
+    },
+    "./approval": {
+      "import": "./dist/approval.js",
+      "types": "./dist/approval.d.ts"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "dev": "tsc --watch --noEmit"
+  },
+  "dependencies": {
+    "@beforepay/database": "workspace:*",
+    "@beforepay/types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
