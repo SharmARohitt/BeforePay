@@ -4,7 +4,7 @@
  */
 
 import { getDatabase } from "@beforepay/database";
-import { invoices, payments, contracts, purchaseOrders } from "@beforepay/database/schema";
+import { invoices, payments, contracts, purchaseOrders } from "@beforepay/database";
 import { eq } from "drizzle-orm";
 
 export interface FinanceAnalysisResult {

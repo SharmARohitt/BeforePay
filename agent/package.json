@@ -30,7 +30,9 @@
   },
   "dependencies": {
     "@beforepay/database": "workspace:*",
-    "@beforepay/types": "workspace:*"
+    "@beforepay/types": "workspace:*",
+    "drizzle-orm": "^0.30.0",
+    "pg": "^8.11.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",

@@ -12,7 +12,7 @@ import {
   payments,
   invoices,
   vendors,
-} from "@beforepay/database/schema";
+} from "@beforepay/database";
 import { eq } from "drizzle-orm";
 import type {
   Investigation,

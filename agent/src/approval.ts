@@ -4,8 +4,8 @@
  */
 
 import { getDatabase } from "@beforepay/database";
-import { approvals, investigationEvents } from "@beforepay/database/schema";
-import { eq } from "drizzle-orm";
+import { approvals, investigationEvents } from "@beforepay/database";
+import { eq, and } from "drizzle-orm";
 import type { Approval } from "@beforepay/types";
 
 export interface ApprovalRequest {
@@ -88,7 +88,6 @@ export async function approveRequest(
       approvedBy,
       approvedAt: new Date(),
       metadata: {
-        ...(approvals.metadata ?? {}),
         reasoning,
       },
     })
@@ -127,7 +126,6 @@ export async function rejectRequest(
     .set({
       status: "rejected",
       metadata: {
-        ...(approvals.metadata ?? {}),
         rejectedBy,
         rejectionReason: reason,
       },
@@ -164,9 +162,10 @@ export async function getPendingApprovals(
     .select()
     .from(approvals)
     .where(
-      (a) =>
-        a.investigationId === investigationId &&
-        a.status === "pending"
+      and(
+        eq(approvals.investigationId, investigationId),
+        eq(approvals.status, "pending")
+      )
     );
 }
 

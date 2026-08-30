@@ -15,10 +15,13 @@
   "scripts": {
     "build": "tsc",
     "type-check": "tsc --noEmit",
-    "dev": "tsc --watch --noEmit",
-    "migrate": "node --loader tsx ./scripts/migrate.ts",
-    "seed": "node --loader tsx ./scripts/seed.ts",
-    "reset": "node --loader tsx ./scripts/reset.ts"
+    "dev": "node --import tsx/esm src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit",
+    "migrate": "drizzle-kit push:pg --config=drizzle.config.ts",
+    "seed": "node --import tsx/esm ./scripts/seed.ts",
+    "reset": "node --import tsx/esm ./scripts/reset.ts && drizzle-kit push:pg --config=drizzle.config.ts"
   },
   "dependencies": {
     "@beforepay/types": "workspace:*",

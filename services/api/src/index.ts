@@ -7,6 +7,7 @@ import { investigationRoutes } from "./routes/investigations.js";
 import { paymentRoutes } from "./routes/payments.js";
 import { vendorRoutes } from "./routes/vendors.js";
 import { dashboardRoutes } from "./routes/dashboard.js";
+import { eventRoutes } from "./routes/events.js";
 
 const API_PORT = parseInt(process.env.API_PORT || "3001", 10);
 const API_HOST = process.env.API_HOST || "localhost";
@@ -43,6 +44,7 @@ async function start() {
     app.register(paymentRoutes, { prefix: "/api/v1/payments" });
     app.register(vendorRoutes, { prefix: "/api/v1/vendors" });
     app.register(dashboardRoutes, { prefix: "/api/v1/dashboard" });
+    app.register(eventRoutes, { prefix: "/api/v1/investigations" });
 
     // 404 handler
     app.setNotFoundHandler((request, reply) => {
