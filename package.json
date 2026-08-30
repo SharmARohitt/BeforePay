@@ -1,0 +1,35 @@
+{
+  "name": "beforepay",
+  "version": "0.1.0",
+  "description": "Autonomous payment exception investigation agent",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@8.0.0",
+  "workspaces": [
+    "apps/web",
+    "services/api",
+    "services/mcp",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm -r run build",
+    "start": "pnpm -r --parallel run start",
+    "lint": "pnpm -r run lint",
+    "type-check": "pnpm -r run type-check",
+    "test": "pnpm -r run test",
+    "db:migrate": "pnpm -C packages/database run migrate",
+    "db:seed": "pnpm -C packages/database run seed",
+    "db:reset": "pnpm -C packages/database run reset",
+    "demo": "pnpm db:reset && pnpm db:seed && pnpm dev",
+    "demo:reset": "pnpm db:reset && pnpm db:seed"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "vitest": "^0.34.0",
+    "@playwright/test": "^1.40.0"
+  }
+}

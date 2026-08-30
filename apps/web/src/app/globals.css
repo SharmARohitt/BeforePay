@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-graphite;
+  }
+
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-3xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+}
+
+@layer components {
+  .container-app {
+    @apply min-h-screen bg-white;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-indigo rounded-lg text-white font-medium hover:bg-indigo-dark transition-colors duration-200;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-graphite-light rounded-lg text-white font-medium hover:bg-graphite-lighter transition-colors duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium;
+  }
+
+  .badge-success {
+    @apply bg-emerald/10 text-emerald;
+  }
+
+  .badge-warning {
+    @apply bg-amber/10 text-amber;
+  }
+
+  .badge-error {
+    @apply bg-red-100 text-red-700;
+  }
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    @apply !transition-none !animate-none;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "@beforepay/database",
+  "version": "0.1.0",
+  "description": "Database schema and migrations for BeforePay",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "src", "migrations"],
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "dev": "tsc --watch --noEmit",
+    "migrate": "node --loader tsx ./scripts/migrate.ts",
+    "seed": "node --loader tsx ./scripts/seed.ts",
+    "reset": "node --loader tsx ./scripts/reset.ts"
+  },
+  "dependencies": {
+    "@beforepay/types": "workspace:*",
+    "drizzle-orm": "^0.30.0",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "drizzle-kit": "^0.20.0"
+  }
+}
